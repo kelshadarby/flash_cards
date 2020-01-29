@@ -43,5 +43,3 @@ class TurnTest < Minitest::Test
   end
 
 end
-
-require "pry"; binding.pry
