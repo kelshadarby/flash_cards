@@ -21,6 +21,9 @@ class TurnTest < Minitest::Test
     assert_instance_of Turn, turn
   end
 
+  def test_if_guess_is_correct
+    
+  end
 end
 
 require "pry"; binding.pry
