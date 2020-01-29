@@ -15,12 +15,8 @@ class Turn
     @card
   end
 
-  def correct?
-    if @guess == @answer
-      true
-    elsif @guess != @answer
-      false
-    end
+  def correct? #remove if
+    @guess == @card.answer
   end
 
   def feedback
