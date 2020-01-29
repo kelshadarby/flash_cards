@@ -1,3 +1,5 @@
+require './lib/card'
+
 class Turn
 
   def initialize(guess, card)
@@ -6,11 +8,11 @@ class Turn
   end
 
   def guess
-    p @guess
+    @guess
   end
 
   def card
-    p @card
+    @card
   end
 
   def correct?
@@ -29,3 +31,5 @@ class Turn
     end
   end
 end
+
+require "pry"; binding.pry
