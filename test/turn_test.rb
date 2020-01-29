@@ -12,17 +12,11 @@ class TurnTest < Minitest::Test
     assert_instance_of Card, card
   end
 
-  # def test_it_exists
-  #   turn = Turn.new("")
-  #
-  #   assert_instance_of Turn, turn
-  # end
-  #
-  # def test_it_has_a_question
-  #   turn = Turn.new("")
-  #
-  #   assert_equal
-  # end
+  def test_turn_exists
+    turn = Turn.new("Juneau", card)
+
+    assert_equal Turn, turn
+  end
 
 end
 
