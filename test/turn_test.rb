@@ -1,24 +1,33 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/turn'
-require './lib/card'
+require './lib/turn' #true
+require './lib/card' #true
 
 
 class TurnTest < Minitest::Test
 
-  def test_it_exists
-    turn = Turn.new("")
+  def test_card_exists
+    card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
 
-    assert_instance_of Turn, turn
+    assert_instance_of Card, card
   end
 
-  def test_it_has_a_question
-    turn = Turn.new("")
-
-    assert_equal
-  end
+  # def test_it_exists
+  #   turn = Turn.new("")
+  #
+  #   assert_instance_of Turn, turn
+  # end
+  #
+  # def test_it_has_a_question
+  #   turn = Turn.new("")
+  #
+  #   assert_equal
+  # end
 
 end
+
+require "pry"; binding.pry
+
 
 
 # pry(main)> require './lib/turn'
@@ -27,20 +36,20 @@ end
 # pry(main)> require './lib/card'
 # #=> true
 #
-# pry(main)> card = Card.new("Which planet is closest to the sun?", "Mercury", :STEM)
-# #=> #<Card:0x007ffdf1820a90 @answer="Mercury", @question="Which planet is closest to the sun?", @category=:STEM>
+# pry(main)> card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
+# #=> #<Card:0x00007f800e29f0c8 @question=""What is the capital of Alaska?", @answer="Juneau", @category=:Geography>
 #
-# pry(main)> turn = Turn.new("Saturn", card)
-# #=> #<Turn:0x00007f998413ee60 @card=#<Card:0x007ffdf1820a90 @answer="Mercury", @question="Which planet is closest to the sun?", @category=:STEM>, @guess="Saturn">
+# pry(main)> turn = Turn.new("Juneau", card)
+# #=> #<Turn:0x00007f99842f0998 @card=#<Card:0x00007f800e29f0c9 @question=""What is the capital of Alaska?", @answer="Juneau", @guess="Juneau">
 #
 # pry(main)> turn.card
-# => #<Card:0x007ffdf1820a90 @answer="Mercury", @question="Which planet is closest to the sun?", @category=:STEM>
+# #=> #<Card:0x00007f800e29f0c8 @question=""What is the capital of Alaska?", @answer="Juneau", @category=:Geography>
 #
 # pry(main)> turn.guess
-# => "Saturn"
+# #=> "Juneau"
 #
 # pry(main)> turn.correct?
-# => false
+# #=> true
 #
 # pry(main)> turn.feedback
-# => "Incorrect."
+# #=> "Correct!"
