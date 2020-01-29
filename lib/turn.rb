@@ -15,9 +15,9 @@ class Turn
 
   def correct?
     if @guess == @answer
-      p true
+      true
     elsif @guess != @answer
-      p false
+      false
     end
   end
 
