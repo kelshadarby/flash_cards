@@ -13,10 +13,24 @@ class Deck
   end
 
   def cards_in_category(category_name)
-    cards.each do |card|
-      if @Card.category == category_name
-      end # if
-    end # each
+    cards_in_category = []
+
+      @cards.each do |card|
+        if card.category == category_name
+          cards_in_category << card
+       end
+     end # map loop
+     cards_in_category
   end # cards_in_category
 
-end
+end # class
+
+card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
+card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
+card_3 = Card.new("Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west", :STEM)
+
+
+cards1 = [card_1, card_2, card_3]
+deck1 = Deck.new(cards1)
+
+puts deck1.cards_in_category(:STEM)
