@@ -15,10 +15,15 @@ class Round
    @deck.cards.first
   end
 
+  def take_turn(guess)
+    turn = Turn.new(guess, current_card)
+    @turns << turn
+    @deck.cards.rotate!
+    @deck.cards.pop
+    turn
+  end
+
 end # class
 
 
-
-
- #if card = card then is current_card
 # use @ for attribute of item being created
