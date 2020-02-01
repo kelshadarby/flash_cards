@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/turn'
 require './lib/deck'
+require './lib/round'
 
 class Round
 
@@ -23,7 +24,15 @@ class Round
     turn
   end
 
-end # class
+  def number_correct
+      @turns.count do |turn|
+        turn.correct?
+      end #loop
+  end #method
+
+end
+
+#end # class
 
 
 # use @ for attribute of item being created
