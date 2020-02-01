@@ -30,9 +30,16 @@ class Round
       end #loop
   end #method
 
-end
+  def number_correct_by_category(category)
+    @turns.count do |turn|
+      if turn.card.category == category && turn.correct?
+        number_correct
+      end # if
+    end # each
+  end # method
 
-#end # class
+  def percent_correct
+    (number_correct.to_f/@turns.count.to_f)*100
+  end
 
-
-# use @ for attribute of item being created
+  end
