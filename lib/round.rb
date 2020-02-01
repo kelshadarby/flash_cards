@@ -1,7 +1,4 @@
-require './lib/card'
 require './lib/turn'
-require './lib/deck'
-require './lib/round'
 
 class Round
 
@@ -34,12 +31,12 @@ class Round
     @turns.count do |turn|
       if turn.card.category == category && turn.correct?
         number_correct
-      end # if
-    end # each
-  end # method
+      end
+    end
+  end
 
   def percent_correct
-    (number_correct.to_f/@turns.count.to_f)*100
+    ((number_correct.to_f/@turns.count.to_f)*100).round(1)
   end
 
   def percent_correct_by_category(category)

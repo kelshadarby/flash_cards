@@ -1,5 +1,3 @@
-require './lib/card'
-
 class Deck
 
   attr_reader :cards
@@ -19,8 +17,8 @@ class Deck
         if card.category == category_name
           cards_in_category << card
        end
-     end # map loop
+     end
      cards_in_category
-  end # cards_in_category
+  end
 
-end # class
+end
