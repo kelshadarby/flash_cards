@@ -45,9 +45,9 @@ class RoundTest < Minitest::Test
     assert_equal [new_turn], round.turns
 
     # Test for another turn
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
-    assert_equal [new_turn, new_turn2], round.turns
+    assert_equal [new_turn, new_turn_2], round.turns
   end
 
 
@@ -67,7 +67,7 @@ class RoundTest < Minitest::Test
     assert_equal card_2, round.current_card
 
     # Test for another turn
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
     assert_equal card_3, round.current_card
   end
@@ -111,9 +111,9 @@ class RoundTest < Minitest::Test
     assert_equal true, new_turn.correct?
 
     # Test for another turn
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
-    assert_equal false, new_turn2.correct?
+    assert_equal false, new_turn_2.correct?
   end
 
   def test_it_can_return_turns
@@ -129,9 +129,9 @@ class RoundTest < Minitest::Test
     assert_equal [new_turn], round.turns
 
     # Test for another turn
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
-    assert_equal [new_turn, new_turn2], round.turns
+    assert_equal [new_turn, new_turn_2], round.turns
   end
 
   def test_it_can_tell_number_correct
@@ -147,7 +147,7 @@ class RoundTest < Minitest::Test
     assert_equal 1, round.number_correct
 
     # Test for another turn
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
     assert_equal 1, round.number_correct
   end
@@ -161,7 +161,7 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
 
     new_turn = round.take_turn("Juneau")
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
     assert_equal "Incorrect.", round.turns.last.feedback
 
@@ -185,7 +185,7 @@ class RoundTest < Minitest::Test
     assert_equal 0, round.number_correct_by_category(:STEM)
 
     # Test for another turn
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
     assert_equal 0, round.number_correct_by_category(:STEM)
   end
@@ -199,7 +199,7 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
 
     new_turn = round.take_turn("Juneau")
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
     assert_equal 50.0, round.percent_correct
 
@@ -218,7 +218,7 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
 
     new_turn = round.take_turn("Juneau")
-    new_turn2 = round.take_turn("Venus")
+    new_turn_2 = round.take_turn("Venus")
 
     assert_equal 100.0, round.percent_correct_by_category(:Geography)
     assert_equal 0.0, round.percent_correct_by_category(:STEM)

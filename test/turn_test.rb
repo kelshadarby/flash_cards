@@ -18,6 +18,12 @@ class TurnTest < Minitest::Test
     turn = Turn.new("Juneau", card)
 
     assert_equal "Juneau", turn.guess
+
+    # Test for another turn
+    card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
+    turn_2 = Turn.new("Venus", card_2)
+
+    assert_equal "Venus", turn_2.guess
   end
 
   def test_it_has_card
@@ -25,24 +31,30 @@ class TurnTest < Minitest::Test
     turn = Turn.new("Juneau", card)
 
     assert_equal card, turn.card
+
+    # Test for another turn
+    card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
+    turn_2 = Turn.new("Venus", card_2)
+
+    assert_equal card_2, turn_2.card
   end
 
   def test_feedback
     card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
-    turn1 = Turn.new("Juneau", card)
-    turn2 = Turn.new("Saturn", card)
+    turn = Turn.new("Juneau", card)
+    turn_2 = Turn.new("Saturn", card)
 
-    assert_equal "Correct!", turn1.feedback
-    assert_equal "Incorrect.", turn2.feedback
+    assert_equal "Correct!", turn.feedback
+    assert_equal "Incorrect.", turn_2.feedback
   end
 
   def test_correct?
     card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
-    turn1 = Turn.new("Juneau", card)
-    turn2 = Turn.new("Saturn", card)
+    turn = Turn.new("Juneau", card)
+    turn_2 = Turn.new("Saturn", card)
 
-    assert_equal true, turn1.correct?
-    assert_equal false, turn2.correct?
+    assert_equal true, turn.correct?
+    assert_equal false, turn_2.correct?
   end
 
 end
