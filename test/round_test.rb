@@ -38,7 +38,18 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
 
     assert_equal [], round.turns
+
+    # Test with a turn
+    new_turn = round.take_turn("Juneau")
+
+    assert_equal [new_turn], round.turns
+
+    # Test for another turn
+    new_turn2 = round.take_turn("Venus")
+
+    assert_equal [new_turn, new_turn2], round.turns
   end
+
 
   def test_it_can_tell_current_card
     card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
@@ -50,10 +61,12 @@ class RoundTest < Minitest::Test
 
     assert_equal card_1, round.current_card
 
+    # Test with a turn
     new_turn = round.take_turn("Juneau")
 
     assert_equal card_2, round.current_card
 
+    # Test for another turn
     new_turn2 = round.take_turn("Venus")
 
     assert_equal card_3, round.current_card
@@ -96,6 +109,11 @@ class RoundTest < Minitest::Test
     new_turn = round.take_turn("Juneau")
 
     assert_equal true, new_turn.correct?
+
+    # Test for another turn
+    new_turn2 = round.take_turn("Venus")
+
+    assert_equal false, new_turn2.correct?
   end
 
   def test_it_can_return_turns
@@ -110,6 +128,7 @@ class RoundTest < Minitest::Test
 
     assert_equal [new_turn], round.turns
 
+    # Test for another turn
     new_turn2 = round.take_turn("Venus")
 
     assert_equal [new_turn, new_turn2], round.turns
@@ -127,6 +146,7 @@ class RoundTest < Minitest::Test
 
     assert_equal 1, round.number_correct
 
+    # Test for another turn
     new_turn2 = round.take_turn("Venus")
 
     assert_equal 1, round.number_correct
@@ -144,6 +164,11 @@ class RoundTest < Minitest::Test
     new_turn2 = round.take_turn("Venus")
 
     assert_equal "Incorrect.", round.turns.last.feedback
+
+    # Test for another turn
+    new_turn3 = round.take_turn("North north west")
+
+    assert_equal "Correct!", round.turns.last.feedback
   end
 
   def test_it_can_tell_number_correct_by_category
@@ -159,6 +184,7 @@ class RoundTest < Minitest::Test
     assert_equal 1, round.number_correct_by_category(:Geography)
     assert_equal 0, round.number_correct_by_category(:STEM)
 
+    # Test for another turn
     new_turn2 = round.take_turn("Venus")
 
     assert_equal 0, round.number_correct_by_category(:STEM)
@@ -176,6 +202,11 @@ class RoundTest < Minitest::Test
     new_turn2 = round.take_turn("Venus")
 
     assert_equal 50.0, round.percent_correct
+
+    # Test for another turn
+    new_turn3 = round.take_turn("North west")
+
+    assert_equal 33.3, round.percent_correct
   end
 
   def test_percent_correct_by_category
@@ -190,6 +221,12 @@ class RoundTest < Minitest::Test
     new_turn2 = round.take_turn("Venus")
 
     assert_equal 100.0, round.percent_correct_by_category(:Geography)
+    assert_equal 0.0, round.percent_correct_by_category(:STEM)
+
+    # Test for another turn
+    new_turn3 = round.take_turn("North north west")
+
+    assert_equal 50.0, round.percent_correct_by_category(:STEM)
   end
 
-end #class
+end
