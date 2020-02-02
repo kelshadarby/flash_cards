@@ -67,9 +67,16 @@ class Round
     puts "****** Game over! ******\n\n"
     puts "You had #{@round.number_correct} correct guesses out of #{card_count} for a total score of #{@round.percent_correct.round(0)}%.\n\n"
 
+
+    card_categories = []
+
     @deck.cards.each do |card|
-        puts "#{card.category} - #{@round.percent_correct_by_category(card.category).round(0)}% correct."
-          if card == @deck.cards.last
+      card_categories << card.category
+    end
+
+    card_categories.uniq.each do |category|
+        puts "#{category} - #{@round.percent_correct_by_category(category).round(0)}% correct."
+          if category == card_categories.uniq.last
             print "\n"
           end #if
     end # loop
