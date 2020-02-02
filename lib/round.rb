@@ -21,9 +21,9 @@ class Round
   end
 
   def number_correct
-      @turns.count do |turn|
-        turn.correct?
-      end
+    @turns.count do |turn|
+      turn.correct?
+    end
   end
 
   def number_correct_by_category(category)
@@ -39,11 +39,10 @@ class Round
   end
 
   def percent_correct_by_category(category)
-    ((number_correct_by_category(category).to_f)/(@deck.cards_in_category(category).count).to_f)*100
+    (number_correct_by_category(category).to_f/@deck.cards_in_category(category).count.to_f)*100
   end
 
   def start(round)
-    @round = round
     card_count = @deck.cards.length
 
     puts "\n Welcome! You're playing with #{card_count} cards."
@@ -52,21 +51,20 @@ class Round
 
     @deck.cards.each do |card|
       puts "This is card number #{(@deck.cards.find_index(card))+1} out of #{card_count}."
-      puts "Question: #{@round.current_card.question}"
+      puts "Question: #{round.current_card.question}"
 
-      new_turn = @round.take_turn(gets.chomp)
+      new_turn = round.take_turn(gets.chomp)
 
-      if new_turn.feedback == "Incorrect."
-        puts "#{new_turn.feedback}"
-        puts "The correct answer is #{new_turn.card.answer} \n\n"
-      elsif new_turn.feedback == "Correct!"
-        puts "#{new_turn.feedback} \n\n"
-      end
+        if new_turn.feedback == "Incorrect."
+          puts "#{new_turn.feedback}"
+          puts "The correct answer is #{new_turn.card.answer} \n\n"
+        elsif new_turn.feedback == "Correct!"
+          puts "#{new_turn.feedback} \n\n"
+        end
     end
 
     puts "****** Game over! ******\n\n"
-    puts "You had #{@round.number_correct} correct guesses out of #{card_count} for a total score of #{@round.percent_correct.round(0)}%.\n\n"
-
+    puts "You had #{round.number_correct} correct guesses out of #{card_count} for a total score of #{round.percent_correct.round(0)}%.\n\n"
 
     card_categories = []
 
@@ -75,11 +73,10 @@ class Round
     end
 
     card_categories.uniq.each do |category|
-        puts "#{category} - #{@round.percent_correct_by_category(category).round(0)}% correct."
-          if category == card_categories.uniq.last
-            print "\n"
-          end #if
-    end # loop
+      puts "#{category} - #{round.percent_correct_by_category(category).round(0)}% correct."
+        if category == card_categories.uniq.last
+          print "\n"
+        end
+    end
   end
-
 end
