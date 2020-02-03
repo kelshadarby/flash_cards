@@ -70,9 +70,11 @@ class Round
 
     @deck.cards.each do |card|
       card_categories << card.category
+      card_categories = card_categories.uniq
     end
 
-    card_categories.uniq.each do |category|
+
+    card_categories.each do |category|
       puts "#{category} - #{round.percent_correct_by_category(category).round(0)}% correct."
         if category == card_categories.uniq.last
           print "\n"
