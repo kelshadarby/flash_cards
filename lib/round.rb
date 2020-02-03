@@ -17,15 +17,14 @@ class Round
     turn = Turn.new(guess, current_card)
     @turns << turn
     @deck.cards.rotate!
-    @deck.cards.pop
     turn
   end
 
   def number_correct
-      @turns.count do |turn|
-        turn.correct?
-      end #loop
-  end #method
+    @turns.count do |turn|
+      turn.correct?
+    end
+  end
 
   def number_correct_by_category(category)
     @turns.count do |turn|
@@ -40,7 +39,46 @@ class Round
   end
 
   def percent_correct_by_category(category)
-    (number_correct_by_category(category).to_f/number_correct.to_f)*100
+    (number_correct_by_category(category).to_f/@deck.cards_in_category(category).count.to_f)*100
   end
 
+  def start(round)
+    card_count = @deck.cards.length
+
+    puts "\n Welcome! You're playing with #{card_count} cards."
+    puts "-" * 50 + "\n\n"
+
+
+    @deck.cards.each do |card|
+      puts "This is card number #{(@deck.cards.find_index(card))+1} out of #{card_count}."
+      puts "Question: #{round.current_card.question}"
+
+      new_turn = round.take_turn(gets.chomp)
+
+        if new_turn.feedback == "Incorrect."
+          puts "#{new_turn.feedback}"
+          puts "The correct answer is #{new_turn.card.answer} \n\n"
+        elsif new_turn.feedback == "Correct!"
+          puts "#{new_turn.feedback} \n\n"
+        end
+    end
+
+    puts "****** Game over! ******\n\n"
+    puts "You had #{round.number_correct} correct guesses out of #{card_count} for a total score of #{round.percent_correct.round(0)}%.\n\n"
+
+    card_categories = []
+
+    @deck.cards.each do |card|
+      card_categories << card.category
+      card_categories = card_categories.uniq
+    end
+
+
+    card_categories.each do |category|
+      puts "#{category} - #{round.percent_correct_by_category(category).round(0)}% correct."
+        if category == card_categories.uniq.last
+          print "\n"
+        end
+    end
   end
+end

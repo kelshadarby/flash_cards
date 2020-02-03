@@ -11,14 +11,14 @@ class Deck
   end
 
   def cards_in_category(category_name)
+
     cards_in_category = []
 
       @cards.each do |card|
         if card.category == category_name
           cards_in_category << card
-       end
-     end
+        end
+      end
      cards_in_category
   end
-
 end
